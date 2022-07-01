@@ -1,0 +1,79 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Game>
+@{
+    ViewData["Title"] = "FilterByYearDescending";
+    Layout = "~/Views/Shared/_ThemeLayout.cshtml";
+}
+
+<h1>Filtering by Year Ascending</h1>
+
+<nav class="navbar navbar-dark bg-warning">
+    <!-- Navbar content -->
+    <ul>
+        <li><a style="color:darkcyan;" href="/Games/FilterByCategory/">Filter by Category</a></li>
+        <li><a style="color:darkcyan;" href="/Games/FilterByYearAscending/">Filter by Year (ascending)</a></li>
+        <li><a style="color:darkcyan;" href="/Games/FilterByYearDescending/">Filter by Year (descending)</a></li>
+        <li><a style="color:darkcyan;" href="/Games/FilterByPointAscending/">filter by Point (ascending)</a></li>
+        <li><a style="color:darkcyan;" href="/Games/FilterByPointDescending/">filter by Point (descending)</a></li>
+    </ul>
+</nav>
+
+@{string color = "";}
+<div class="site-section">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12">
+                <h2>Game's List</h2>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var i in Model)
+            {
+                if (i.Category.Color == "Red")
+                {
+                    color = "post-category text-white bg-danger mb-3";
+                }
+
+                if (i.Category.Color == "Blue")
+                {
+                    color = "post-category text-white bg-primary mb-3";
+                }
+
+                if (i.Category.Color == "Green")
+                {
+                    color = "post-category text-white bg-success mb-3";
+                }
+
+                if (i.Category.Color == "Purple")
+                {
+                    color = "post-category text-white bg-secondary mb-3";
+                }
+
+                if (i.Category.Color == "Orange")
+                {
+                    color = "post-category text-white bg-warning mb-3";
+                }
+
+                <div class="col-lg-4 mb-4">
+                    <div class="entry2">
+                        <a href="/Games/Details/@i.GameId"><img src="@i.CoverPhoto" style="height:210px" alt="Image" class="img-fluid rounded"></a>
+                        <div class="excerpt">
+                            <span class="@color">@i.Category.CategoryName</span>
+
+                            <h2><a style="color:lightgray;" href="/Games/Details/@i.GameId">@i.GameName</a><span style="color:lightgreen;"> - @i.Point</span></h2>
+                            <h6>@i.Year</h6>
+                            <div class="post-meta align-items-center text-left clearfix">
+                                <figure class="author-figure mb-0 mr-3 float-left"><img src="@i.Developer.Logo" alt="Image" class="img-fluid"></figure>
+                                <span class="d-inline-block mt-1">By <a style="color:lightpink" href="#">@i.Developer.DeveloperCompanyName</a></span>
+                                @*<span>&nbsp;-&nbsp; @(((DateTime)i.BlogDate).ToString("dd-MMM-yyyy"))</span>*@
+                            </div>
+
+                            @*<p>@i.BlogDetail.Substring(0, i.BlogDetail.Substring(0, 200).LastIndexOf(""))...</p>*@
+                            <p><a href="/Games/Details/@i.GameId">Read More</a></p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

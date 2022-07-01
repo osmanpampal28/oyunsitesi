@@ -1,0 +1,74 @@
+﻿@model EntityLayer.Concrete.Game
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_ThemeLayout.cshtml";
+}
+
+<h1>Game's Details</h1>
+
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('@Model.CoverPhoto');">
+    <div class="container">
+        <div class="row same-height justify-content-center">
+            <div class="col-md-12 col-lg-10">
+                <div class="post-entry text-center">
+                    <span class="post-category text-white bg-success mb-3">@Model.Category.CategoryName</span>
+                    <h1 class="mb-4"><a href="#">@Model.GameName</a></h1>
+                    <div class="post-meta align-items-center text-center">
+                        <figure class="author-figure mb-0 mr-3 d-inline-block"><img src="@Model.Developer.Logo " alt="Image" class="img-fluid"></figure>
+                        <span class="d-inline-block mt-1">@Model.Developer.DeveloperCompanyName</span>
+                        <span>&nbsp;-&nbsp; @Model.Year</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="site-section py-lg">
+    <div class="container">
+
+        <div class="row blog-entries element-animate">
+
+            @* LongText-- >  Blog Long detail !!!Commentler gelecek *@
+            <div class="col-md-12 col-lg-8 main-content">
+                <div class="post-content-body" style="color:antiquewhite;">
+                    <p>
+                        @Model.Description .
+                    </p>
+
+                    @foreach(var i in Model.GameGalleries)
+            {
+                        <div style="padding: 10px;"><img height="337" width="600" src ="@i.GameImage"/></div>
+            }
+                </div>
+            </div>
+
+            @*About Writer-- > Author of Blog  !!Kategori ve popular posts*@
+            <div class="col-md-12 col-lg-4 sidebar">
+                <div class="sidebar-box">
+                    <div class="bio text-center">
+                        <img src="@Model.Developer.Logo" alt="Image Placeholder" class="img-fluid mb-5">
+                        <div class="bio-body">
+                            <h2>@Model.Developer.DeveloperCompanyName</h2>
+                            
+                            @*<p><a href="#" class="btn btn-primary btn-sm rounded px-4 py-2">Diğer Yazılarım</a></p>*@
+
+                        </div>
+                    </div>
+                </div>
+
+                @*blog fotografi*@
+                @*<div class="sidebar-box">
+                    <div class="row mb-5 mt-5">
+                        <div class="col-md-12 mb-4">
+                            <img src="@Model.CoverPhoto" alt="Image placeholder" class="img-fluid rounded">
+                        </div>
+                        
+                    </div>
+                </div>*@
+
+            </div>
+
+        </div>
+    </div>
+</section>
