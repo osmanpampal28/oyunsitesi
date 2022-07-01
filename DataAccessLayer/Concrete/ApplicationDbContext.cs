@@ -17,6 +17,7 @@ namespace DataAccessLayer.Concrete
         {
             modelBuilder.Entity<Game>().ToTable("Oyunlar").HasMany(g => g.GameGalleries).WithOne(gm => gm.Game).HasForeignKey(s => s.GameId).OnDelete(DeleteBehavior.Cascade);
 
+
         }
 
         public DbSet<Game> Games { get; set; }
